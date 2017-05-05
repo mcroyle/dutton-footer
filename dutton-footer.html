@@ -1,0 +1,45 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-ajax/iron-ajax.html">
+
+<!--
+`dutton-footer`
+Standard footer include for Dutton Institute courses.
+
+@demo demo/index.html
+-->
+
+<dom-module id="dutton-footer">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <div id="footer-data">
+      <iron-ajax id="getFooter" url="{{dataurl}}" handle-as="json" on-response="handleResponse"></iron-ajax>
+      {{output}}
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'dutton-footer',
+      properties: {
+        dataurl: {
+          type: String,
+          reflectToAttribute: true
+        },
+        output: {
+          type: String,
+        }
+      },
+      ready: function() {
+        this.$.getFooter.generateRequest();
+      },
+      handleResponse: function (data) {
+        footer_data = data.detail.response;
+        this.output = footer_data.body.value;
+      }
+    });
+  </script>
+</dom-module>
