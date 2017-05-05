@@ -1,5 +1,6 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../iron-ajax/iron-ajax.html">
+<link rel="import" href="../html-echo/html-echo.html">
 
 <!--
 `dutton-footer`
@@ -17,7 +18,7 @@ Standard footer include for Dutton Institute courses.
     </style>
     <div id="footer-data">
       <iron-ajax id="getFooter" url="{{dataurl}}" handle-as="json" on-response="handleResponse"></iron-ajax>
-      {{output}}
+      <html-echo html="{{output}}"></html-echo>
     </div>
   </template>
 
